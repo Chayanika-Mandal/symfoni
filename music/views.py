@@ -1,6 +1,13 @@
+import sys
+
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 # Create your views here.
 def home_page(request):
-    return HttpResponse("<h1>Hello World!</h1>")
+    context_dictionary = {
+        "path": sys.path,
+        "my_list": "wdavfsv",
+        "name": "Diptesh",
+    }
+    return render(request, "music/home-page.html", context_dictionary)
