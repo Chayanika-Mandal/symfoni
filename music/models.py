@@ -13,9 +13,13 @@ class Artist(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=50, null=False)
-    artist = models.ForeignKey(Artist, on_delete=models.SET_NULL, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.SET_NULL, null=True, blank=True)
     url = models.URLField()
-    users_who_liked = models.ManyToManyField(User, related_name="users_who_liked")
+    users_who_liked = models.ManyToManyField(
+        User, related_name="users_who_liked", blank=True
+    )
 
     def __str__(self) -> str:
-        return f"Song {self.name} by {self.artist.name}"
+        if self.artist:
+            return f"{self.name} by {self.artist.name}"
+        return f"{self.name}"
