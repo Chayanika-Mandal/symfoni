@@ -1,6 +1,8 @@
-from django.urls import path, include
-from music.views import home_page
+from django.urls import path
+
+from music.views import all_artists, all_songs
 
 urlpatterns = [
-    path("", home_page, name="home_page"),
+    path("all-artists/", all_artists, name="all_artists"),
+    path("all-songs/", all_songs, name="all_songs"),
 ]

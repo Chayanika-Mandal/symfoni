@@ -1,13 +1,12 @@
-import sys
-
 from django.shortcuts import render
 
+from music.models import Artist
 
-# Create your views here.
-def home_page(request):
-    context_dictionary = {
-        "path": sys.path,
-        "my_list": "wdavfsv",
-        "name": "Diptesh",
-    }
-    return render(request, "music/home-page.html", context_dictionary)
+
+def all_songs(request):
+    return render(request, "music/all-songs.html")
+
+
+def all_artists(request):
+    context_dictionary = {"artists": Artist.objects.all()}
+    return render(request, "music/all-artists.html", context_dictionary)
