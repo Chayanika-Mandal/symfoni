@@ -1,10 +1,11 @@
 from django.shortcuts import render
 
-from music.models import Artist
+from music.models import Artist, Song
 
 
 def all_songs(request):
-    return render(request, "music/all-songs.html")
+    context_dictionary = {"songs": Song.objects.all()}
+    return render(request, "music/all-songs.html", context_dictionary)
 
 
 def all_artists(request):

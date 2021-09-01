@@ -11,5 +11,6 @@
             "name": "SQLite connection",
             "database": "${workspaceFolder:symfoni}/db.sqlite3"
         }
-    ]
+    ],
+    "sqltools.useNodeRuntime": true
 }

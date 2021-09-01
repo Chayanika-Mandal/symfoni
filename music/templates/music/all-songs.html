@@ -1,1 +1,9 @@
 <h1>Hello here are all songs</h1>
+<div>
+    {% for song in songs %}
+    <div>
+        <span>ID: {{ song.pk }}</span>,
+        <span>name: {{ song.name }}</span>
+    </div>
+    {% endfor %}
+</div>
