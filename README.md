@@ -31,3 +31,12 @@ playlists.
   2. song_id: foreign key to Songs table
   3. user_id: foreign key to Users table
   4. Unique constraint between song_id and user_id
+
+## Common HTTP verbs
+
+When you want to access data from the server, you normally use an HTTP method (verb) to
+request that data. Some common methods are:
+
+- **GET**: It is the most common method, you use it when you want to just GET data from the
+  server.
+- **POST**: It is used when you want to edit data on the server.
