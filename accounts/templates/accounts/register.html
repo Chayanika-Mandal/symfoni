@@ -1,0 +1,7 @@
+<h1>Create an account.</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div>{{ form.as_p }}</div>
+    <button type="submit" value="Submit">Create acount</button>
+</form>
