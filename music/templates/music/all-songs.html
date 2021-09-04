@@ -1,9 +1,13 @@
 <h1>Hello here are all songs</h1>
 <div>
-    {% for song in songs %}
-    <div>
-        <span>ID: {{ song.pk }}</span>,
-        <span>name: {{ song.name }}</span>
-    </div>
-    {% endfor %}
+  {% for song in object_list %}
+  <div>
+    <span>ID: {{ song.pk }}</span>,
+    <span>
+      name: <a href="{{ song.url }}" target="_blank">{{ song.name }}</a> </span
+    >,
+    <span>artist: {{ song.artist.name }}</span>
+  </div>
+  {% endfor %}
+  <a href="{% url 'music:add_song' %}">Add a new song</a>
 </div>

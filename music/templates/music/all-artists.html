@@ -1,9 +1,10 @@
 <h1>Hello here are all artists</h1>
 <div>
-  {% for artist in artists %}
+  {% for artist in object_list %}
   <div>
     <span>ID: {{ artist.pk }}</span>,
     <span>name: {{ artist.name }}</span>
   </div>
   {% endfor %}
+  <a href="{% url 'music:add_artist' %}">Add a new artist</a>
 </div>

@@ -1,38 +1,39 @@
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView
 
-from music.forms import ArtistForm
 from music.models import Artist, Song
 
 
-def all_songs(request):
-    context_dictionary = {"songs": Song.objects.all()}
-    return render(request, "music/all-songs.html", context_dictionary)
+class ListSongView(ListView):
+    template_name = "music/all-songs.html"
+    model = Song
 
 
-class AllArtistView(TemplateView):
+class ListArtistView(ListView):
     template_name = "music/all-artists.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["artists"] = Artist.objects.all()
-        return context
+    model = Artist
 
 
-# class AddArtistView(CreateView):
-#     template_name = "music/add-artist.html"
-#     model = Artist
-#     fields = ["name"]
-#     success_url = "/music/all-artists"
+class CreateArtistView(CreateView):
+    template_name = "music/add-artist.html"
+    model = Artist
+    fields = ["name"]
+    success_url = reverse_lazy("music:all_artists")
 
 
-def add_artist_view(request):
-    if request.method == "GET":
-        print("request-method: ", request.method)
-        form = ArtistForm()
-        return render(request, "music/add-artist.html", {"form": form})
-    artist_name = request.POST["name"]
-    artist = Artist.objects.create(name=artist_name)
-    artist.save()
-    return redirect(reverse("music:all_artists"))
+class CreateSongView(CreateView):
+    template_name = "music/add-song.html"
+    model = Song
+    fields = ["name", "url", "artist"]
+    success_url = reverse_lazy("music:all_songs")
+
+
+# def add_artist_view(request):  # function based view
+#     if request.method == "GET":
+#         print("request-method: ", request.method)
+#         form = ArtistForm()
+#         return render(request, "music/add-artist.html", {"form": form})
+#     artist_name = request.POST["name"]
+#     artist = Artist.objects.create(name=artist_name)
+#     artist.save()
+#     return redirect(reverse("music:all_artists"))

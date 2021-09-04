@@ -2,6 +2,6 @@
 
 <form method="POST">
   {% csrf_token %}
-  <div>{{ form }}</div>
+  <div>{{ form.as_p }}</div>
   <button type="submit" value="Submit">Add an artist</button>
 </form>

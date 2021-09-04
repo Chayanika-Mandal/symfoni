@@ -1,0 +1,12 @@
+<h1>Add a new Song</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <div>{{ form.as_p }}</div>
+  <button type="submit" value="Submit">Add a Song</button>
+</form>
+
+<div>
+  Didn't find the artist you like? Add one
+  <a href="{% url 'music:add_artist' %}">here</a>
+</div>
