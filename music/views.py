@@ -27,6 +27,12 @@ class CreateSongView(CreateView):
     fields = ["name", "url", "artist"]
     success_url = reverse_lazy("music:all_songs")
 
+    def form_valid(self, form, *args, **kwargs):
+        song = form.save(commit=False)
+        song.added_by = self.request.user
+        song.save()
+        return super().form_valid(form, *args, **kwargs)
+
 
 # def add_artist_view(request):  # function based view
 #     if request.method == "GET":

@@ -1,5 +1,4 @@
 from django.urls import path
-
 from music.views import CreateArtistView, CreateSongView, ListArtistView, ListSongView
 
 app_name = "music"
