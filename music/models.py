@@ -21,6 +21,9 @@ class Song(models.Model):
     )
 
     def __str__(self) -> str:
-        if self.artist:
-            return f"{self.name} by {self.artist.name}"
+        if self.artists.count() > 0:
+            artists_name = ""
+            for artist in self.artists.all():
+                artists_name += artist.name + ", "
+            return f"{self.name} by {artists_name}"
         return f"{self.name}"
