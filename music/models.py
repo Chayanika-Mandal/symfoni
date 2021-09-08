@@ -13,8 +13,7 @@ class Artist(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=50, null=False)
-    # TODO: Make this field ManyToMany so that we can handle collab songs
-    artist = models.ForeignKey(Artist, on_delete=models.SET_NULL, null=True, blank=True)
+    artists = models.ManyToManyField(Artist, related_name="artists", blank=True)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.URLField()
     users_who_liked = models.ManyToManyField(

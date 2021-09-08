@@ -24,7 +24,7 @@ class CreateArtistView(CreateView):
 class CreateSongView(CreateView):
     template_name = "music/add-song.html"
     model = Song
-    fields = ["name", "url", "artist"]
+    fields = ["name", "url", "artists"]
     success_url = reverse_lazy("music:all_songs")
 
     def form_valid(self, form, *args, **kwargs):
