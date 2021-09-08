@@ -28,8 +28,15 @@ class CreateSongView(CreateView):
     success_url = reverse_lazy("music:all_songs")
 
     def form_valid(self, form, *args, **kwargs):
+        # song = Song.objects.create(
+        #     name="qdwefsdgbgfnhjdwfsbg",
+        #     url="https://wM&usg=AOvVaw3",
+        #     artist="ed",
+        #     added_by="Chayanika"
+        # )
+        # song.save() # this is not called when you pass commit=False
         song = form.save(commit=False)
-        song.added_by = self.request.user
+        song.added_by = self.request.user  # this is the currently logged in user
         song.save()
         return super().form_valid(form, *args, **kwargs)
 
