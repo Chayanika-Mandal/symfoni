@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from uuid import uuid4
 
 User = get_user_model()
 
@@ -28,3 +29,14 @@ class Song(models.Model):
                 artists_name += artist.name + ", "
             return f"{self.name} by {artists_name}"
         return f"{self.name}"
+
+
+class Playlist(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    name = models.CharField(max_length=75, null=False)
+    songs = models.ManyToManyField(Song, related_name="songs", blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self) -> str:
+
+        return f"{self.name} containing {self.songs.all()}"

@@ -35,7 +35,7 @@ playlists.
 [] Playlist table
 
   1. playlist_name: varchar(75) not null
-  2. playlist_id: int, primary key, auto-increment
+  2. playlist_id: primary key, UUID field(UUID=Universally unique Indentifier)
   3. songs: ManyToMany to song table
   4. created_by: foreign key to user table
 
