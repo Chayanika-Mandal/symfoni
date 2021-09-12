@@ -5,7 +5,7 @@ playlists.
 
 ## Database schema
 
-- User table
+[x] User table
 
   1. user_id: int, primary key, auto-increment
   2. username: varchar(50) not null, unique
@@ -13,24 +13,31 @@ playlists.
   4. date_of_joining: timestamp not null
   5. last_login: timestamp
 
-- Artist table
+[x] Artist table
 
   1. artist_id: int, primary key, auto-increment
   2. name: varchar(50) not null
 
-- Song table
+[x] Song table
 
   1. song_id: int, primary key, auto-increment
   2. name: varchar(50) not null
   3. artist_id: foreign key to Artists table
   4. url: varchar(200)
 
-- SongLike table
+[x] SongLike table
 
   1. song_like_id: int, primary key, auto-increment
   2. song_id: foreign key to Songs table
   3. user_id: foreign key to Users table
   4. Unique constraint between song_id and user_id
+
+[] Playlist table
+
+  1. playlist_name: varchar(75) not null
+  2. playlist_id: int, primary key, auto-increment
+  3. songs: ManyToMany to song table
+  4. created_by: foreign key to user table
 
 ## Common HTTP verbs
 
