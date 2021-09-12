@@ -6,6 +6,7 @@ User = get_user_model()
 
 class Artist(models.Model):
     name = models.CharField(max_length=50, null=False)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Artist named {self.name}"

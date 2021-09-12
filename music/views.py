@@ -20,6 +20,18 @@ class CreateArtistView(CreateView):
     fields = ["name"]
     success_url = reverse_lazy("music:all_artists")
 
+    def form_valid(self, form, *args, **kwargs):
+        # artist = Artist.objects.create(
+        #     name="qdwefsdgbgfnhjdwfsbg",
+        #     artist="ed",
+        #     added_by="Chayanika"
+        # )
+        # artist.save() # this is not called when you pass commit=False
+        artist = form.save(commit=False)
+        artist.added_by = self.request.user  # this is the currently logged in user
+        artist.save()
+        return super().form_valid(form, *args, **kwargs)
+
 
 class CreateSongView(CreateView):
     template_name = "music/add-song.html"
