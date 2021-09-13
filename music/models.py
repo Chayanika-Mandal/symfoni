@@ -23,12 +23,11 @@ class Song(models.Model):
     )
 
     def __str__(self) -> str:
-        if self.artists.count() > 0:
-            artists_name = ""
-            for artist in self.artists.all():
-                artists_name += artist.name + ", "
-            return f"{self.name} by {artists_name}"
-        return f"{self.name}"
+        if self.artists.count() == 0:
+            return self.name
+        artists_names = map(lambda s: s.name, self.artists.all())
+        names = ", ".join(artists_names)
+        return f"{self.name} by {names}"
 
 
 class Playlist(models.Model):
@@ -38,5 +37,8 @@ class Playlist(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
-
-        return f"{self.name} containing {self.songs.all()}"
+        if self.songs.count() == 0:
+            return self.name
+        song_names = map(lambda s: s.name, self.songs.all())
+        names = ", ".join(song_names)
+        return f"{self.name} containing {names}"
