@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-c_i8mi50@f4w1lw$-r5jkwhx0yi=%u5pi*s=5khw_w8xm=3&q6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["symfoni.herokuapp.com"]
 
 
 # Application definition
