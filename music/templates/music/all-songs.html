@@ -4,17 +4,18 @@
   <div>
     <span>ID: {{ song.pk }}</span>,
     <span>
-      name: <a href="{{ song.url }}" target="_blank">{{ song.name }}</a> </span
-    >
+      name: <a href="{{ song.url }}" target="_blank">{{ song.name }}</a> </span>
     {% if song.artists.count > 0 %}
     <span>
       artists:
       {% for artist in song.artists.all %}
-      <span> {{ artist.name }} </span>, 
+      <span> {{ artist.name }} </span>,
       {% endfor %}
     </span>
     {% endif %}
   </div>
+  {% empty %}
+  <div> No songs are available as of now. </div>
   {% endfor %}
   <a href="{% url 'music:add_song' %}">Add a new song</a>
 </div>
