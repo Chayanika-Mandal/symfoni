@@ -1,5 +1,5 @@
 import os
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,11 +18,6 @@ if os.environ.get("DJANGO_DEBUG", "0") == "1":
     DEBUG = False
 else:
     DEBUG = True
-
-if DEBUG:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = ["symfoni.herokuapp.com"]
 
 
 # Application definition
@@ -130,3 +125,11 @@ LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "music:all_songs"
 
 # LOGOUT_REDIRECT_URL = "home_page"
+
+
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ["symfoni.herokuapp.com"]
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES["default"].update(db_from_env)
