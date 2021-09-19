@@ -1,11 +1,40 @@
-<h1>Login to your account.</h1>
+{% extends 'base.html' %} {% load bulma_tags %}
 
-<form method="POST">
-    {% csrf_token %}
-    <div>{{ form.as_p }}</div>
-    <button type="submit" value="Submit">Login</button>
-</form>
-<div>
+<!-- page title -->
+{% block document_title %} Login {% endblock %}
+
+<!-- main content -->
+
+{% block main_content %}
+<div
+  class="
+    is-flex
+    is-flex-grow-1
+    is-align-content-center
+    is-justify-content-center
+    is-flex-direction-column
+  "
+>
+  <h1 class="title is-1 has-text-centered">Login</h1>
+  <div class="columns is-centered block mt-5">
+    <form
+      method="POST"
+      class="column is-half is-flex-direction-column columns block"
+    >
+      {% csrf_token %}
+      <div class="block">{{ form | bulma }}</div>
+      <button
+        class="button is-success is-medium column is-full block"
+        type="submit"
+        value="Submit"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+  <div class="has-text-centered">
     Accounts does not exist? Register
     <a href="{% url 'accounts:register' %}">here.</a>
+  </div>
 </div>
+{% endblock %}
